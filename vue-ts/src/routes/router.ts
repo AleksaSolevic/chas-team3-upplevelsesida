@@ -4,7 +4,7 @@ import Booking from "../pages/Booking.vue";
 import Cart from "../pages/Cart.vue";
 import Deals from "../pages/Deals.vue";
 import Experiences from "../pages/Experiences.vue";
-import Home from "../components/Home.vue";
+import Home from "../pages/Home.vue";
 
 const routes = [
   {
