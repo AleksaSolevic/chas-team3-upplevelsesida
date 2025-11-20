@@ -10,12 +10,22 @@
 
 <style scoped>
 footer {
-    padding: 0.3rem;
+    padding: 0.5rem 1rem;
     background-color: #333;
     color: white;
     text-align: center;
     margin-top: auto;
 }
 
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
 
+/* Mobile */
+@media (max-width: 480px) {
+    footer p {
+        font-size: 0.8rem;
+    }
+}
 </style>
