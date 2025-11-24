@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import NavBar from './NavBar.vue'
 import Footer from './Footer.vue'
+import ToastContainer from '../ToastContainer.vue'
 </script>
 
 <template>
@@ -10,6 +11,7 @@ import Footer from './Footer.vue'
             <!-- This is where your page components will render -->
             <router-view />
         </main>
+        <ToastContainer />
         <Footer/>
     </div>
 </template>
