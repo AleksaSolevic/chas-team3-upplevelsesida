@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useCartStore } from '../stores/cart'
-import { useNotifications } from '../stores/notifications'
 
 interface Experience {
 	id: number
@@ -52,13 +50,6 @@ onMounted(async () => {
 })
 
 function goToBooking() {
-	if (!experience.value) return
-	const cart = useCartStore()
-	const notify = useNotifications()
-	// add to cart with selected people quantity
-	cart.addItem({ id: experience.value.id, name: experience.value.name, price: experience.value.price, image: experience.value.image, type: experience.value.type }, people.value)
-	notify.add(`${experience.value.name} added to cart (${people.value} ×)`, 'success')
-	// navigate to booking page (pass people)
 	router.push({ path: `/Booking/${id}`, query: { people: String(people.value) } })
 }
 </script>
@@ -120,7 +111,7 @@ function goToBooking() {
 						<div class="price total">Total (approx)<div class="total-amount">€{{ totalApprox.toFixed(2) }}</div></div>
 						<div class="price per">(€{{ experience.price.toFixed(2) }} per person)</div>
 
-						<button class="book-btn" @click="goToBooking">Book now</button>
+						<button class="book-btn" @click="goToBooking">Buy or pay now</button>
 						<p class="small">Secure your spot — free cancellation up to 24 hours before.</p>
 					</div>
 
