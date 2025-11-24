@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "name": "Sunset Kayak Tour",
+    "type": "Relaxing",
+    "price": 49,
+    "rating": 4.8,
+    "reviews": 124,
+    "duration": "2h",
+    "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=6c8b59c12f4e1b0f6d5a6c9c2d2a6b4f",
+    "description": "Paddle gently as the sun goes down and enjoy a tranquil evening on the water.",
+    "tags": ["water", "sunset", "guided"]
+  },
+  {
+    "id": 2,
+    "name": "City Food Tasting Walk",
+    "type": "Cultural",
+    "price": 69,
+    "rating": 4.7,
+    "reviews": 210,
+    "duration": "3h",
+    "image": "https://images.unsplash.com/photo-1466637574441-749b8f19452f?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=7c8f3a2a2b3a3b5f6c6e2d7a8f9c0b0a",
+    "description": "Taste your way through the city's best markets and hidden gems.",
+    "tags": ["food", "walking", "local guide"]
+  },
+  {
+    "id": 3,
+    "name": "Zipline Adventure",
+    "type": "Adventurous",
+    "price": 89,
+    "rating": 4.9,
+    "reviews": 98,
+    "duration": "1.5h",
+    "image": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=3b6f81d9d4b7f9e6c8c7a1f4b3d2c1a0",
+    "description": "Feel the thrill as you fly above forests and valleys on multiple ziplines.",
+    "tags": ["adrenaline", "outdoors", "group"]
+  },
+  {
+    "id": 4,
+    "name": "Family-Friendly Farm Visit",
+    "type": "Kid friendly",
+    "price": 29,
+    "rating": 4.6,
+    "reviews": 52,
+    "duration": "2h",
+    "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=9c7b2f4e6a1b3c5d7e8f9a0b1c2d3e4f",
+    "description": "Hands-on farm activities perfect for kids and families.",
+    "tags": ["family", "animals", "outdoors"]
+  },
+  {
+    "id": 5,
+    "name": "Guided Museum Highlights",
+    "type": "Cultural",
+    "price": 39,
+    "rating": 4.5,
+    "reviews": 76,
+    "duration": "1h",
+    "image": "https://images.unsplash.com/photo-1529101091764-c3526daf38fe?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=1a2b3c4d5e6f7081920a1b2c3d4e5f6a",
+    "description": "Fast-track entry and a focused tour of the museum's must-see pieces.",
+    "tags": ["museum", "history", "audio guide"]
+  },
+  {
+    "id": 6,
+    "name": "Sunrise Hike & Breakfast",
+    "type": "Adventurous",
+    "price": 59,
+    "rating": 4.8,
+    "reviews": 140,
+    "duration": "4h",
+    "image": "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=abc123def4567890abcdef1234567890",
+    "description": "Early-morning guided hike culminating in a scenic breakfast.",
+    "tags": ["hiking", "breakfast", "nature"]
+  },
+  {
+    "id": 7,
+    "name": "Relaxing Spa and Thermal Baths",
+    "type": "Relaxing",
+    "price": 79,
+    "rating": 4.9,
+    "reviews": 65,
+    "duration": "3h",
+    "image": "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=def456abc1237890abcdef1234567890",
+    "description": "Unwind in soothing thermal pools and enjoy a restorative treatment.",
+    "tags": ["spa", "wellness", "relax"]
+  },
+  {
+    "id": 8,
+    "name": "Kids Adventure Playground Entry",
+    "type": "Kid friendly",
+    "price": 19,
+    "rating": 4.4,
+    "reviews": 34,
+    "duration": "All day",
+    "image": "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=aaa111bbb222ccc333ddd444eee555fff",
+    "description": "Safe play areas and activities designed especially for younger kids.",
+    "tags": ["kids", "play", "family"]
+  }
+]
