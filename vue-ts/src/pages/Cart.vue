@@ -36,6 +36,7 @@ function proceed() {
 	if (!cart.items.length) return
 	// navigate to booking for the first item, pass people as sum qty
 	const first = cart.items[0]
+	if (!first) return
 	const people = cart.items.reduce((s, i) => s + i.qty, 0)
 	router.push({ path: `/Booking/${first.id}`, query: { people: String(people) } })
 }
@@ -75,7 +76,7 @@ function proceed() {
 					<div class="row total"><strong>Total</strong><strong>€{{ total.toFixed(2) }}</strong></div>
 					<div class="actions">
 						<button class="btn" @click="clearCart">Clear cart</button>
-						<button class="btn primary" @click="proceed">Proceed to booking</button>
+						<button class="btn primary" @click="proceed">Buy now</button>
 					</div>
 				</div>
 			</aside>
@@ -93,13 +94,13 @@ function proceed() {
 .info { flex:1 }
 .type { color:#666; font-size:0.9rem }
 .controls { display:flex; gap:0.5rem; align-items:center; margin-top:0.5rem }
-.remove { background:transparent; border:1px solid #ddd; padding:0.35rem 0.5rem; border-radius:6px; cursor:pointer }
+.remove { background:transparent; border:1px solid #ddd; padding:0.35rem 0.5rem; border-radius:6px; cursor:pointer; color:#111 }
 .line-price { font-weight:700 }
-.summary { width:320px }
+.summary { width:320px; color: black }
 .box { background:#fff; border:1px solid #eee; padding:1rem; border-radius:8px }
 .row { display:flex; justify-content:space-between; padding:0.4rem 0 }
 .total { font-size:1.15rem }
 .actions { display:flex; gap:0.5rem; margin-top:1rem }
-.btn { padding:0.6rem 0.8rem; border-radius:6px; border:1px solid #ddd; background:transparent; cursor:pointer }
+.btn { padding:0.6rem 0.8rem; border-radius:6px; border:1px solid #ddd; background:transparent; cursor:pointer; color: black}
 .btn.primary { background:#0a66ff; color:#fff; border:0 }
 </style>
