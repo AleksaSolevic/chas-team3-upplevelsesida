@@ -21,12 +21,13 @@ import ToastContainer from '../ToastContainer.vue'
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: var(--color-bg);
 }
 
 main {
     flex: 1;
-    padding: 2rem;
-    max-width: 1200px;
+    padding: var(--spacing-xl);
+    max-width: var(--container-max);
     margin: 0 auto;
     width: 100%;
 }
@@ -34,14 +35,14 @@ main {
 /* Tablet */
 @media (max-width: 768px) {
     main {
-        padding: 1.5rem;
+        padding: var(--spacing-lg);
     }
 }
 
 /* Mobile */
 @media (max-width: 480px) {
     main {
-        padding: 1rem;
+        padding: var(--spacing-md);
     }
 }
 </style>

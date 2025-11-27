@@ -63,9 +63,21 @@ const filtered = computed(() => {
 
 <template>
 	<div class="home">
-		<section class="search-area">
-			<div class="search-controls">
-				<input v-model="searchQuery" type="search" placeholder="Search experiences, e.g. 'kayak'" aria-label="Search experiences" />
+		<!-- Hero Section -->
+		<section class="hero">
+			<div class="hero-content">
+				<h1>Discover Unforgettable Experiences</h1>
+				<p>From adventure to relaxation — find your perfect getaway</p>
+			</div>
+		</section>
+
+		<!-- Search Section -->
+		<section class="search-section">
+			<div class="search-card">
+				<div class="search-controls">
+					<input v-model="searchQuery" type="search" placeholder="Search experiences, e.g. 'kayak'" aria-label="Search experiences" />
+					<button class="search-btn">Search</button>
+				</div>
 				<div class="filters">
 					<template v-for="t in allTypes" :key="t">
 						<button
@@ -74,7 +86,7 @@ const filtered = computed(() => {
 							{{ t }}
 						</button>
 					</template>
-					<button class="clear" v-if="selectedTypes.length || searchQuery" @click="clearFilters">Clear</button>
+					<button class="clear" v-if="selectedTypes.length || searchQuery" @click="clearFilters">✕</button>
 				</div>
 			</div>
 			<div class="results-info">
@@ -94,23 +106,199 @@ const filtered = computed(() => {
 </template>
 
 <style scoped>
-.search-area { max-width:1200px; margin: 1.5rem auto; padding: 0 1rem; }
-.search-controls { display:flex; gap:1rem; align-items:center; flex-wrap:wrap }
-.search-controls input[type="search"] { flex:1; min-width:220px; padding:0.8rem 1rem; border-radius:8px; border:1px solid #e6e6e6; font-size:1rem }
-.filters { display:flex; gap:0.5rem; align-items:center; }
-.chip { background:#f3f4f6; border:none; padding:0.5rem 0.75rem; border-radius:20px; cursor:pointer; color:#111 }
-.chip.active { background:#0a66ff; color:#fff }
-.clear { background:transparent; border:1px solid #ddd; padding:0.45rem 0.6rem; border-radius:6px; margin-left:0.5rem }
-.results-info { max-width:1200px; margin:0.5rem auto; padding:0 1rem; color:#444 }
-
-.grid { max-width:1200px; margin: 1rem auto 4rem; padding: 0 1rem }
-.cards { display:grid; grid-template-columns: repeat(1, 1fr); gap:1rem }
-.empty { padding:2rem; color:#666; text-align:center }
-
-@media(min-width:640px) {
-	.cards { grid-template-columns: repeat(2, 1fr); }
+/* Hero Section */
+.hero {
+  background: var(--gradient-sunset);
+  padding: 4rem var(--spacing-md);
+  text-align: center;
+  margin: calc(-1 * var(--spacing-xl)) calc(-1 * var(--spacing-md)) 0;
+  position: relative;
 }
-@media(min-width:1000px) {
-	.cards { grid-template-columns: repeat(3, 1fr); }
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(to bottom right, transparent 49%, var(--color-bg) 50%);
+}
+
+.hero-content {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 {
+  color: var(--color-white);
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-sm);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.hero p {
+  color: rgba(255,255,255,0.95);
+  font-size: 1.2rem;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+
+/* Search Section */
+.search-section {
+  max-width: var(--container-max);
+  margin: -2rem auto var(--spacing-xl);
+  padding: 0 var(--spacing-md);
+  position: relative;
+  z-index: 2;
+}
+
+.search-card {
+  background: var(--color-bg);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.search-controls {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.search-controls input[type="search"] {
+  flex: 1;
+  min-width: 220px;
+  padding: 0.9rem var(--spacing-md);
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--color-border);
+  font-size: 1rem;
+  background: var(--color-bg);
+  color: var(--color-text);
+  transition: border-color var(--transition-fast);
+}
+
+.search-controls input[type="search"]:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.search-btn {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  padding: 0.9rem 2rem;
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.search-btn:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
+
+.filters {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.chip {
+  background: var(--color-bg-tertiary);
+  border: none;
+  padding: var(--spacing-sm) 0.85rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  color: var(--color-text);
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.chip:hover {
+  background: var(--color-border);
+}
+
+.chip.active {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.clear {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-left: var(--spacing-sm);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.clear:hover {
+  background: var(--color-error);
+  border-color: var(--color-error);
+  color: var(--color-white);
+}
+
+.results-info {
+  text-align: center;
+  margin-top: var(--spacing-md);
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+}
+
+/* Grid Section */
+.grid {
+  max-width: var(--container-max);
+  margin: var(--spacing-md) auto 4rem;
+  padding: 0 var(--spacing-md);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--spacing-lg);
+}
+
+.empty {
+  padding: var(--spacing-xl);
+  color: var(--color-text-secondary);
+  text-align: center;
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-xl);
+}
+
+@media(min-width: 640px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+  .hero h1 { font-size: 3rem; }
+}
+
+@media(min-width: 1000px) {
+  .cards { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media(max-width: 600px) {
+  .search-controls {
+    flex-direction: column;
+  }
+  .search-btn {
+    width: 100%;
+  }
+  .hero {
+    padding: 3rem var(--spacing-md);
+  }
+  .hero h1 {
+    font-size: 1.8rem;
+  }
 }
 </style>

@@ -44,28 +44,118 @@ const props = defineProps<{ experience: {
 .card {
   display: flex;
   flex-direction: column;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 6px 18px rgba(28, 28, 28, 0.06);
+  background: var(--color-bg);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
   overflow: hidden;
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  border: 1px solid var(--color-border-light);
 }
-.card:hover { transform: translateY(-6px); box-shadow: 0 12px 28px rgba(28,28,28,0.12); }
-.card-image img { width: 100%; height: 160px; object-fit: cover; display:block; }
-.card-body { padding: 1rem; display:flex; flex-direction:column; gap:0.5rem; }
-.card-top { display:flex; justify-content:space-between; align-items:flex-start; gap:0.5rem}
-.title { font-size:1.05rem; margin:0; }
-.title a { color: #111; text-decoration:none }
-.price { color:#0a66ff; font-weight:700 }
-.meta { color:#666; font-size:0.9rem; margin:0 }
-.desc { color:#333; font-size:0.95rem; margin:0.25rem 0 0.5rem }
-.card-bottom { display:flex; justify-content:space-between; align-items:center; gap:0.5rem }
-.rating { color:#111; font-weight:600; }
-.reviews { color:#777; font-weight:400; font-size:0.95rem; margin-left:6px }
-.tags { display:flex; gap:0.4rem; flex-wrap:wrap }
-.tag { font-size:0.8rem; background:#f2f6ff; color:#0a66ff; padding:0.25rem 0.45rem; border-radius:999px }
+.card:hover { 
+  transform: translateY(-6px); 
+  box-shadow: var(--shadow-xl); 
+}
+.card-image { 
+  position: relative; 
+  overflow: hidden;
+}
+.card-image img { 
+  width: 100%; 
+  height: 180px; 
+  object-fit: cover; 
+  display: block;
+  transition: transform var(--transition-normal);
+}
+.card:hover .card-image img {
+  transform: scale(1.05);
+}
+.card-body { 
+  padding: var(--spacing-md); 
+  display: flex; 
+  flex-direction: column; 
+  gap: var(--spacing-sm); 
+}
+.card-top { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: flex-start; 
+  gap: var(--spacing-sm);
+}
+.title { 
+  font-size: 1.1rem; 
+  margin: 0;
+  font-weight: 600;
+}
+.title a { 
+  color: var(--color-text); 
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+.title a:hover {
+  color: var(--color-primary);
+}
+.price { 
+  background: var(--color-primary);
+  color: var(--color-white); 
+  font-weight: 700;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+.meta { 
+  color: var(--color-text-secondary); 
+  font-size: 0.9rem; 
+  margin: 0;
+}
+.meta strong {
+  color: var(--color-primary);
+}
+.desc { 
+  color: var(--color-text-secondary); 
+  font-size: 0.92rem; 
+  margin: var(--spacing-xs) 0 var(--spacing-sm);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card-bottom { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  gap: var(--spacing-sm);
+  margin-top: auto;
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid var(--color-border-light);
+}
+.rating { 
+  color: var(--color-text); 
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.reviews { 
+  color: var(--color-text-secondary); 
+  font-weight: 400; 
+  font-size: 0.9rem; 
+  margin-left: 4px;
+}
+.tags { 
+  display: flex; 
+  gap: 0.35rem; 
+  flex-wrap: wrap;
+}
+.tag { 
+  font-size: 0.75rem; 
+  background: var(--color-primary-light); 
+  color: var(--color-primary); 
+  padding: var(--spacing-xs) 0.5rem; 
+  border-radius: var(--radius-full);
+  font-weight: 500;
+}
 
 @media (min-width: 900px) {
-  .card-image img { height: 180px }
+  .card-image img { height: 200px; }
 }
 </style>

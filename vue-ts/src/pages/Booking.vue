@@ -17,14 +17,29 @@ interface Experience {
 	tags: string[]
 }
 
+interface Deal {
+	id: string
+	name: string
+	description: string
+	price: number
+}
+
+interface ExperienceDeals {
+	experienceId: number
+	deals: Deal[]
+}
+
 const route = useRoute()
 const router = useRouter()
 const id = Number(route.params.id || 0)
 
 const peopleQuery = route.query.people as string | undefined
+const dealsQuery = route.query.deals as string | undefined
+
 const people = ref<number>(peopleQuery ? Number(peopleQuery) || 1 : 1)
 
 const experience = ref<Experience | null>(null)
+const selectedDeals = ref<Deal[]>([])
 const loading = ref(true)
 const error = ref<string | null>(null)
 
@@ -36,17 +51,41 @@ const phone = ref('')
 const cart = useCartStore()
 const notify = useNotifications()
 
-const subtotal = computed(() => (experience.value ? experience.value.price * people.value : 0))
+// Calculate deals total
+const dealsTotal = computed(() => selectedDeals.value.reduce((sum, deal) => sum + deal.price, 0))
+
+const subtotal = computed(() => (experience.value ? (experience.value.price + dealsTotal.value) * people.value : 0))
 const taxes = computed(() => +(subtotal.value * 0.12))
 const total = computed(() => +(subtotal.value + taxes.value))
 
 onMounted(async () => {
 	try {
-		const res = await fetch('/experiences.json')
-		if (!res.ok) throw new Error('Failed to load experiences')
-		const data: Experience[] = await res.json()
-		experience.value = data.find((e) => e.id === id) ?? null
-		if (!experience.value) error.value = 'Experience not found.'
+		const [expRes, dealsRes] = await Promise.all([
+			fetch('/experiences.json'),
+			fetch('/deals.json')
+		])
+		
+		if (!expRes.ok) throw new Error('Failed to load experiences')
+		if (!dealsRes.ok) throw new Error('Failed to load deals')
+		
+		const expData: Experience[] = await expRes.json()
+		const dealsData: ExperienceDeals[] = await dealsRes.json()
+		
+		experience.value = expData.find((e) => e.id === id) ?? null
+		
+		if (!experience.value) {
+			error.value = 'Experience not found.'
+		} else if (dealsQuery) {
+			// Parse selected deal IDs from query params
+			const selectedDealIds = dealsQuery.split(',')
+			const experienceDeals = dealsData.find(d => d.experienceId === id)
+			
+			if (experienceDeals) {
+				selectedDeals.value = experienceDeals.deals.filter(deal => 
+					selectedDealIds.includes(deal.id)
+				)
+			}
+		}
 	} catch (err: any) {
 		error.value = err.message || String(err)
 	} finally {
@@ -56,9 +95,20 @@ onMounted(async () => {
 
 function submitBooking() {
 	if (!experience.value) return
-	// Add to cart with selected people quantity
-	cart.addItem({ id: experience.value.id, name: experience.value.name, price: experience.value.price, image: experience.value.image, type: experience.value.type }, people.value)
-	notify.add(`${experience.value.name} added to cart (${people.value}×)`, 'success')
+	// Add to cart with selected people quantity and deals
+	cart.addItem({ 
+		id: experience.value.id, 
+		name: experience.value.name, 
+		price: experience.value.price, 
+		image: experience.value.image, 
+		type: experience.value.type,
+		deals: selectedDeals.value.length > 0 ? selectedDeals.value : undefined
+	}, people.value)
+	
+	const dealsText = selectedDeals.value.length > 0 
+		? ` with ${selectedDeals.value.length} add-on${selectedDeals.value.length > 1 ? 's' : ''}`
+		: ''
+	notify.add(`${experience.value.name}${dealsText} added to cart (${people.value}×)`, 'success')
 	// Navigate to cart where payment/checkout will be handled
 	router.push('/Cart')
 }
@@ -112,6 +162,24 @@ function backToExperience() {
 				<aside class="summary">
 					<div class="box">
 						<div class="row"><span>Price per person</span><span>€{{ experience.price.toFixed(2) }}</span></div>
+						
+						<!-- Selected deals -->
+						<div v-if="selectedDeals.length > 0" class="deals-section">
+							<div class="deals-header">Add-ons (per person)</div>
+							<div 
+								v-for="deal in selectedDeals" 
+								:key="deal.id" 
+								class="row deal-row"
+							>
+								<span class="deal-name">{{ deal.name }}</span>
+								<span>€{{ deal.price.toFixed(2) }}</span>
+							</div>
+							<div class="row subtotal-row">
+								<span>Add-ons subtotal</span>
+								<span>€{{ dealsTotal.toFixed(2) }}</span>
+							</div>
+						</div>
+						
 						<div class="row"><span>People</span><span>{{ people }}</span></div>
 						<div class="row"><span>Subtotal</span><span>€{{ subtotal.toFixed(2) }}</span></div>
 						<div class="row"><span>Taxes (est.)</span><span>€{{ taxes.toFixed(2) }}</span></div>
@@ -128,45 +196,187 @@ function backToExperience() {
 </template>
 
 <style scoped>
-.booking-page { max-width:1100px; margin:1.5rem auto; padding:0 1rem }
-.back { background:transparent; border:0; color:#0a66ff; cursor:pointer; margin-bottom:0.75rem }
-.grid { display:flex; gap:1.5rem }
-.left { flex:1 }
-.summary { width:320px; color:black }
-.box { background:#fff; border:1px solid #eee; padding:1rem; border-radius:8px }
-.row { display:flex; justify-content:space-between; padding:0.4rem 0 }
-.total { font-weight:700 }
-.btn { padding:0.6rem 0.8rem; border-radius:6px; border:1px solid #ddd; background:transparent; cursor:pointer }
-.btn.primary { background:#0a66ff; color:#fff; border:0 }
-.muted { color:#666; font-size:0.9rem }
-.left label { display:block; margin-bottom:1rem; font-weight:600; color:#222 }
+.booking-page { 
+  max-width: 1100px; 
+  margin: var(--spacing-lg) auto; 
+  padding: 0 var(--spacing-md);
+}
+.back { 
+  background: transparent; 
+  border: 0; 
+  color: var(--color-primary); 
+  cursor: pointer; 
+  margin-bottom: 0.75rem;
+  padding: var(--spacing-sm) 0;
+  font-weight: 500;
+}
+.back:hover {
+  color: var(--color-primary-hover);
+}
+h1 {
+  color: var(--color-text);
+  font-size: 1.75rem;
+  margin-bottom: var(--spacing-sm);
+}
+.meta {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-lg);
+}
+.grid { 
+  display: flex; 
+  gap: var(--spacing-lg);
+}
+.left { flex: 1; }
+.left h3 {
+  color: var(--color-text);
+  margin-bottom: var(--spacing-md);
+}
+.summary { 
+  width: 320px;
+}
+.box { 
+  background: var(--color-bg); 
+  border: 1px solid var(--color-border-light); 
+  padding: var(--spacing-md); 
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+.row { 
+  display: flex; 
+  justify-content: space-between; 
+  padding: 0.4rem 0;
+  color: var(--color-text);
+}
+.total { font-weight: 700; }
+.btn { 
+  padding: 0.6rem 0.8rem; 
+  border-radius: var(--radius-md); 
+  border: 1px solid var(--color-border); 
+  background: transparent; 
+  cursor: pointer;
+  color: var(--color-text);
+  transition: all var(--transition-fast);
+}
+.btn.primary { 
+  background: var(--color-primary); 
+  color: var(--color-white); 
+  border: 0; 
+  width: 100%; 
+  margin-top: var(--spacing-md);
+  font-weight: 600;
+}
+.btn.primary:hover {
+  background: var(--color-primary-hover);
+}
+.muted { 
+  color: var(--color-text-secondary); 
+  font-size: 0.9rem;
+}
+.left label { 
+  display: block; 
+  margin-bottom: var(--spacing-md); 
+  font-weight: 600; 
+  color: var(--color-text);
+}
 .left input,
 .left select {
-	width:100%;
-	padding:0.9rem 0.9rem;
-	font-size:1rem;
-	border-radius:8px;
-	border:1px solid #e6e9ef;
-	box-shadow: inset 0 1px 2px rgba(16,24,40,0.02);
-	margin-top:0.35rem;
+  width: 100%;
+  padding: 0.9rem;
+  font-size: 1rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text);
+  margin-top: 0.35rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
-.left input::placeholder { color:#999 }
+.left input::placeholder { 
+  color: var(--color-text-muted);
+}
 .left input:focus, .left select:focus {
-	outline: none;
-	border-color: #0a66ff;
-	box-shadow: 0 6px 18px rgba(10,102,255,0.08);
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(10, 102, 255, 0.1);
 }
 
 /* details-specific styles */
-.left .details label { color: #fff }
-.left .details .label-text { display:block; font-weight:600; margin-bottom:0.35rem; color:inherit }
+.left .details label { 
+  color: var(--color-text);
+}
+.left .details .label-text { 
+  display: block; 
+  font-weight: 600; 
+  margin-bottom: 0.35rem; 
+  color: inherit;
+}
 .left .details input,
-.left .details select { width: 70%; display:block; margin-top:0.35rem }
+.left .details select { 
+  width: 70%; 
+  display: block; 
+  margin-top: 0.35rem;
+}
+
+/* Deals section styles */
+.deals-section {
+  margin: var(--spacing-sm) 0;
+  padding: 0.75rem;
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.deals-header {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-sm);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.deal-row {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.deal-name {
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.subtotal-row {
+  font-weight: 600;
+  border-top: 1px dashed var(--color-border);
+  margin-top: var(--spacing-xs);
+  padding-top: var(--spacing-sm);
+  color: var(--color-text);
+}
 
 /* fall-in animation */
-.fall-enter-from { transform: translateY(-28px); opacity: 0 }
-.fall-enter-active { transition: transform 360ms cubic-bezier(.2,.8,.2,1), opacity 360ms cubic-bezier(.2,.8,.2,1) }
-.fall-enter-to { transform: translateY(0); opacity: 1 }
-.confirmation { padding:1rem; background:#f8fffb; border:1px solid #e6ffec; border-radius:8px }
-.actions { display:flex; gap:0.5rem; margin-top:1rem }
+.fall-enter-from { transform: translateY(-28px); opacity: 0; }
+.fall-enter-active { transition: transform 360ms cubic-bezier(.2,.8,.2,1), opacity 360ms cubic-bezier(.2,.8,.2,1); }
+.fall-enter-to { transform: translateY(0); opacity: 1; }
+.confirmation { 
+  padding: var(--spacing-md); 
+  background: var(--color-bg-secondary); 
+  border: 1px solid var(--color-border); 
+  border-radius: var(--radius-lg);
+}
+.actions { 
+  display: flex; 
+  gap: var(--spacing-sm); 
+  margin-top: var(--spacing-md);
+}
+
+@media(max-width: 768px) {
+  .grid { flex-direction: column; }
+  .summary { width: 100%; }
+  
+  .left .details input,
+  .left .details select { 
+    width: 100%;
+  }
+}
 </style>

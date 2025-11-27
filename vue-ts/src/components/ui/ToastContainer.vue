@@ -21,26 +21,64 @@ function close(id: number) {
 <style scoped>
 .toast-container {
   position: fixed;
-  right: 1rem;
-  bottom: 1rem;
+  right: var(--spacing-md);
+  bottom: var(--spacing-md);
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--spacing-sm);
   z-index: 9999;
 }
+
 .toast {
-  background: white;
+  background: var(--color-bg);
   padding: 0.6rem 0.75rem;
-  border-radius: 8px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-  display:flex;
-  align-items:center;
-  gap:0.75rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   min-width: 220px;
+  animation: slideIn 0.3s ease;
 }
-.toast.success { border-left: 4px solid #16a34a }
-.toast.info { border-left: 4px solid #0ea5e9 }
-.toast.error { border-left: 4px solid #ef4444 }
-.toast .message { flex:1; color:#111 }
-.toast .close { background:transparent; border:0; font-size:1.1rem; cursor:pointer; color:#666 }
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.toast.success {
+  border-left: 4px solid var(--color-success);
+}
+
+.toast.info {
+  border-left: 4px solid var(--color-info);
+}
+
+.toast.error {
+  border-left: 4px solid var(--color-error);
+}
+
+.toast .message {
+  flex: 1;
+  color: var(--color-text);
+}
+
+.toast .close {
+  background: transparent;
+  border: 0;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  transition: color var(--transition-fast);
+}
+
+.toast .close:hover {
+  color: var(--color-text);
+}
 </style>
