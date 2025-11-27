@@ -1,0 +1,804 @@
+[
+  {
+    "experienceId": 1,
+    "deals": [
+      {
+        "id": "d1-1",
+        "name": "Waterproof Camera Rental",
+        "description": "Capture stunning sunset photos with a GoPro rental included",
+        "price": 15
+      },
+      {
+        "id": "d1-2",
+        "name": "Gourmet Picnic Basket",
+        "description": "Enjoy local cheeses, fruits, and sparkling wine after your paddle",
+        "price": 35
+      }
+    ]
+  },
+  {
+    "experienceId": 2,
+    "deals": [
+      {
+        "id": "d2-1",
+        "name": "Dessert Tasting Add-on",
+        "description": "Extra stop at the city's best patisserie for exclusive tastings",
+        "price": 18
+      },
+      {
+        "id": "d2-2",
+        "name": "Recipe Book Souvenir",
+        "description": "Take home a beautifully illustrated local recipe book",
+        "price": 22
+      },
+      {
+        "id": "d2-3",
+        "name": "Wine Pairing Upgrade",
+        "description": "Add local wine pairings at each food stop",
+        "price": 29
+      }
+    ]
+  },
+  {
+    "experienceId": 3,
+    "deals": [
+      {
+        "id": "d3-1",
+        "name": "HD Video Package",
+        "description": "Professional video recording of your zipline adventure",
+        "price": 25
+      },
+      {
+        "id": "d3-2",
+        "name": "Post-Adventure Smoothie",
+        "description": "Refreshing energy smoothie after your adrenaline rush",
+        "price": 8
+      },
+      {
+        "id": "d3-3",
+        "name": "Souvenir T-Shirt",
+        "description": "Exclusive zipline adventure t-shirt as a keepsake",
+        "price": 20
+      }
+    ]
+  },
+  {
+    "experienceId": 4,
+    "deals": [
+      {
+        "id": "d4-1",
+        "name": "Animal Feeding Experience",
+        "description": "Get hands-on and feed the farm animals yourself",
+        "price": 10
+      },
+      {
+        "id": "d4-2",
+        "name": "Farm Fresh Produce Basket",
+        "description": "Take home a basket of fresh eggs, vegetables, and dairy",
+        "price": 18
+      },
+      {
+        "id": "d4-3",
+        "name": "Pony Ride for Kids",
+        "description": "A short guided pony ride for children under 12",
+        "price": 12
+      }
+    ]
+  },
+  {
+    "experienceId": 5,
+    "deals": [
+      {
+        "id": "d5-1",
+        "name": "Audio Guide Device",
+        "description": "Personal audio guide for extended museum exploration",
+        "price": 8
+      },
+      {
+        "id": "d5-2",
+        "name": "Museum Café Voucher",
+        "description": "Coffee and pastry at the museum's elegant café",
+        "price": 12
+      }
+    ]
+  },
+  {
+    "experienceId": 6,
+    "deals": [
+      {
+        "id": "d6-1",
+        "name": "Premium Breakfast Upgrade",
+        "description": "Upgrade to champagne breakfast with smoked salmon and pastries",
+        "price": 25
+      },
+      {
+        "id": "d6-2",
+        "name": "Hiking Poles Rental",
+        "description": "Professional hiking poles for extra stability on the trail",
+        "price": 8
+      },
+      {
+        "id": "d6-3",
+        "name": "Photo Package",
+        "description": "Professional photos of your sunrise adventure",
+        "price": 30
+      }
+    ]
+  },
+  {
+    "experienceId": 7,
+    "deals": [
+      {
+        "id": "d7-1",
+        "name": "Deep Tissue Massage",
+        "description": "45-minute relaxing massage by a professional therapist",
+        "price": 55
+      },
+      {
+        "id": "d7-2",
+        "name": "Aromatherapy Session",
+        "description": "Personalized essential oil treatment for ultimate relaxation",
+        "price": 25
+      },
+      {
+        "id": "d7-3",
+        "name": "Herbal Tea & Snacks",
+        "description": "Selection of organic teas and healthy spa snacks",
+        "price": 15
+      }
+    ]
+  },
+  {
+    "experienceId": 8,
+    "deals": [
+      {
+        "id": "d8-1",
+        "name": "Kids Meal Combo",
+        "description": "Lunch box with sandwich, juice, and a healthy snack",
+        "price": 10
+      },
+      {
+        "id": "d8-2",
+        "name": "Face Painting",
+        "description": "Fun face painting session for the little ones",
+        "price": 8
+      }
+    ]
+  },
+  {
+    "experienceId": 9,
+    "deals": [
+      {
+        "id": "d9-1",
+        "name": "Historical Guidebook",
+        "description": "Illustrated book about the city's rich history",
+        "price": 15
+      },
+      {
+        "id": "d9-2",
+        "name": "Traditional Café Stop",
+        "description": "Coffee and local pastry at a historic café",
+        "price": 12
+      },
+      {
+        "id": "d9-3",
+        "name": "Extended Underground Tour",
+        "description": "Access to hidden underground tunnels and cellars",
+        "price": 20
+      }
+    ]
+  },
+  {
+    "experienceId": 10,
+    "deals": [
+      {
+        "id": "d10-1",
+        "name": "Spray Paint Workshop",
+        "description": "Create your own street art piece with guidance",
+        "price": 25
+      },
+      {
+        "id": "d10-2",
+        "name": "Street Art Print",
+        "description": "Take home a signed print from a local artist",
+        "price": 35
+      }
+    ]
+  },
+  {
+    "experienceId": 11,
+    "deals": [
+      {
+        "id": "d11-1",
+        "name": "Waterproof Phone Pouch",
+        "description": "Keep your phone safe and take underwater photos",
+        "price": 10
+      },
+      {
+        "id": "d11-2",
+        "name": "Beach Towel & Snacks",
+        "description": "Premium beach towel and refreshments post-paddle",
+        "price": 18
+      }
+    ]
+  },
+  {
+    "experienceId": 12,
+    "deals": [
+      {
+        "id": "d12-1",
+        "name": "Ghost Story Book",
+        "description": "Collection of local ghost stories and legends",
+        "price": 12
+      },
+      {
+        "id": "d12-2",
+        "name": "Hot Drinks & Snacks",
+        "description": "Warm up with hot chocolate and cookies after the walk",
+        "price": 10
+      },
+      {
+        "id": "d12-3",
+        "name": "Haunted Pub Stop",
+        "description": "Visit a famous haunted pub for a drink and more stories",
+        "price": 15
+      }
+    ]
+  },
+  {
+    "experienceId": 13,
+    "deals": [
+      {
+        "id": "d13-1",
+        "name": "Apron & Recipe Cards",
+        "description": "Take home a branded apron and recipe cards",
+        "price": 15
+      },
+      {
+        "id": "d13-2",
+        "name": "Wine Pairing Selection",
+        "description": "Carefully selected wines to complement your dishes",
+        "price": 28
+      },
+      {
+        "id": "d13-3",
+        "name": "Market Shopping Tour",
+        "description": "Pre-class visit to the local market with the chef",
+        "price": 20
+      }
+    ]
+  },
+  {
+    "experienceId": 14,
+    "deals": [
+      {
+        "id": "d14-1",
+        "name": "Underwater Camera Rental",
+        "description": "Capture marine life with a professional underwater camera",
+        "price": 25
+      },
+      {
+        "id": "d14-2",
+        "name": "Beach BBQ Lunch",
+        "description": "Fresh grilled seafood lunch after your adventure",
+        "price": 35
+      },
+      {
+        "id": "d14-3",
+        "name": "Wetsuit Upgrade",
+        "description": "Premium wetsuit for extra comfort in cooler waters",
+        "price": 15
+      }
+    ]
+  },
+  {
+    "experienceId": 15,
+    "deals": [
+      {
+        "id": "d15-1",
+        "name": "Champagne Upgrade",
+        "description": "Premium champagne instead of standard sparkling wine",
+        "price": 40
+      },
+      {
+        "id": "d15-2",
+        "name": "Professional Photo Package",
+        "description": "High-resolution photos of your flight experience",
+        "price": 45
+      },
+      {
+        "id": "d15-3",
+        "name": "Private Flight",
+        "description": "Exclusive private balloon for just your group",
+        "price": 150
+      }
+    ]
+  },
+  {
+    "experienceId": 16,
+    "deals": [
+      {
+        "id": "d16-1",
+        "name": "Helmet & Safety Gear",
+        "description": "Premium helmet and safety equipment rental",
+        "price": 8
+      },
+      {
+        "id": "d16-2",
+        "name": "Picnic Lunch Pack",
+        "description": "Packed lunch for your cycling adventure",
+        "price": 15
+      },
+      {
+        "id": "d16-3",
+        "name": "GPS Device Rental",
+        "description": "GPS unit with pre-loaded scenic routes",
+        "price": 10
+      }
+    ]
+  },
+  {
+    "experienceId": 17,
+    "deals": [
+      {
+        "id": "d17-1",
+        "name": "Photo Editing Tutorial",
+        "description": "30-minute online editing session after the workshop",
+        "price": 20
+      },
+      {
+        "id": "d17-2",
+        "name": "Memory Card & Prints",
+        "description": "High-capacity SD card plus 5 printed photos",
+        "price": 25
+      }
+    ]
+  },
+  {
+    "experienceId": 18,
+    "deals": [
+      {
+        "id": "d18-1",
+        "name": "Sunset Cruise Extension",
+        "description": "Extend your sail to catch the sunset over the water",
+        "price": 25
+      },
+      {
+        "id": "d18-2",
+        "name": "Snacks & Drinks Onboard",
+        "description": "Cheese platter and refreshing beverages while sailing",
+        "price": 20
+      },
+      {
+        "id": "d18-3",
+        "name": "Sailing Certificate",
+        "description": "Official beginner sailing completion certificate",
+        "price": 10
+      }
+    ]
+  },
+  {
+    "experienceId": 19,
+    "deals": [
+      {
+        "id": "d19-1",
+        "name": "Climbing Shoes Rental",
+        "description": "Premium climbing shoes for better grip",
+        "price": 8
+      },
+      {
+        "id": "d19-2",
+        "name": "Protein Shake & Snacks",
+        "description": "Post-climb nutrition pack to refuel",
+        "price": 10
+      }
+    ]
+  },
+  {
+    "experienceId": 20,
+    "deals": [
+      {
+        "id": "d20-1",
+        "name": "Premium Wine Pairing",
+        "description": "Sommelier-selected wines for each course",
+        "price": 45
+      },
+      {
+        "id": "d20-2",
+        "name": "Live Musician Serenade",
+        "description": "Private musician performance at your table",
+        "price": 60
+      },
+      {
+        "id": "d20-3",
+        "name": "Rose & Chocolate Box",
+        "description": "Fresh roses and artisan chocolates for your partner",
+        "price": 35
+      }
+    ]
+  },
+  {
+    "experienceId": 21,
+    "deals": [
+      {
+        "id": "d21-1",
+        "name": "Treasure Map & Compass",
+        "description": "Physical treasure map and compass as a souvenir",
+        "price": 8
+      },
+      {
+        "id": "d21-2",
+        "name": "Ice Cream Treat",
+        "description": "Ice cream stop for the family at the finish",
+        "price": 10
+      },
+      {
+        "id": "d21-3",
+        "name": "Pirate Costume Kit",
+        "description": "Fun pirate accessories for kids during the hunt",
+        "price": 12
+      }
+    ]
+  },
+  {
+    "experienceId": 22,
+    "deals": [
+      {
+        "id": "d22-1",
+        "name": "Camera Lens Rental",
+        "description": "Professional telephoto lens for stunning shots",
+        "price": 30
+      },
+      {
+        "id": "d22-2",
+        "name": "Editing Workshop",
+        "description": "Online photo editing session with the guide",
+        "price": 25
+      }
+    ]
+  },
+  {
+    "experienceId": 23,
+    "deals": [
+      {
+        "id": "d23-1",
+        "name": "Puppet Souvenir",
+        "description": "Hand-crafted puppet to take home",
+        "price": 15
+      },
+      {
+        "id": "d23-2",
+        "name": "Snacks & Drinks Pack",
+        "description": "Popcorn and juice for the kids during the show",
+        "price": 8
+      }
+    ]
+  },
+  {
+    "experienceId": 24,
+    "deals": [
+      {
+        "id": "d24-1",
+        "name": "Premium Bar Tab",
+        "description": "Open bar with cocktails and premium drinks",
+        "price": 40
+      },
+      {
+        "id": "d24-2",
+        "name": "Front Row Seating",
+        "description": "Best seats closest to the jazz band",
+        "price": 25
+      },
+      {
+        "id": "d24-3",
+        "name": "Jazz Album Souvenir",
+        "description": "Signed vinyl record from the performing band",
+        "price": 30
+      }
+    ]
+  },
+  {
+    "experienceId": 25,
+    "deals": [
+      {
+        "id": "d25-1",
+        "name": "Pro Photography Package",
+        "description": "Action shots of your climb by a professional",
+        "price": 40
+      },
+      {
+        "id": "d25-2",
+        "name": "Gourmet Lunch Pack",
+        "description": "High-energy gourmet lunch during the session",
+        "price": 25
+      },
+      {
+        "id": "d25-3",
+        "name": "Climbing Gloves",
+        "description": "Premium climbing gloves to keep as a souvenir",
+        "price": 20
+      }
+    ]
+  },
+  {
+    "experienceId": 26,
+    "deals": [
+      {
+        "id": "d26-1",
+        "name": "6-Pack Sampler",
+        "description": "Take home a sampler pack of the brewery's best",
+        "price": 22
+      },
+      {
+        "id": "d26-2",
+        "name": "Beer & Cheese Pairing",
+        "description": "Artisan cheese selection paired with beer flights",
+        "price": 18
+      },
+      {
+        "id": "d26-3",
+        "name": "Branded Pint Glass",
+        "description": "Souvenir brewery pint glass to keep",
+        "price": 10
+      }
+    ]
+  },
+  {
+    "experienceId": 27,
+    "deals": [
+      {
+        "id": "d27-1",
+        "name": "Sunset Snack Pack",
+        "description": "Wine and cheese to enjoy while watching the sunset",
+        "price": 22
+      },
+      {
+        "id": "d27-2",
+        "name": "Dry Bag Rental",
+        "description": "Waterproof bag to keep your valuables safe",
+        "price": 8
+      }
+    ]
+  },
+  {
+    "experienceId": 28,
+    "deals": [
+      {
+        "id": "d28-1",
+        "name": "Glazing & Firing",
+        "description": "Have your piece professionally glazed and fired",
+        "price": 20
+      },
+      {
+        "id": "d28-2",
+        "name": "Extra Clay Pack",
+        "description": "Additional clay to create a second piece",
+        "price": 12
+      },
+      {
+        "id": "d28-3",
+        "name": "Gift Wrapping Service",
+        "description": "Beautiful gift packaging for your creation",
+        "price": 8
+      }
+    ]
+  },
+  {
+    "experienceId": 29,
+    "deals": [
+      {
+        "id": "d29-1",
+        "name": "Underwater Photo Package",
+        "description": "Professional underwater photos of your dive",
+        "price": 35
+      },
+      {
+        "id": "d29-2",
+        "name": "Extended Dive Time",
+        "description": "Extra 30 minutes underwater exploration",
+        "price": 45
+      },
+      {
+        "id": "d29-3",
+        "name": "PADI Certificate",
+        "description": "Official try-dive certificate of completion",
+        "price": 15
+      }
+    ]
+  },
+  {
+    "experienceId": 30,
+    "deals": [
+      {
+        "id": "d30-1",
+        "name": "Botanical Tea Tasting",
+        "description": "Sample herbal teas made from garden plants",
+        "price": 12
+      },
+      {
+        "id": "d30-2",
+        "name": "Seed Pack Souvenir",
+        "description": "Collection of seeds to grow your own garden",
+        "price": 10
+      }
+    ]
+  },
+  {
+    "experienceId": 31,
+    "deals": [
+      {
+        "id": "d31-1",
+        "name": "All-You-Can-Eat Pass",
+        "description": "Unlimited tastings at selected stalls",
+        "price": 25
+      },
+      {
+        "id": "d31-2",
+        "name": "Craft Drink Upgrade",
+        "description": "Local craft beer or cocktail pairings",
+        "price": 15
+      },
+      {
+        "id": "d31-3",
+        "name": "VIP Market Access",
+        "description": "Early access before crowds arrive",
+        "price": 12
+      }
+    ]
+  },
+  {
+    "experienceId": 32,
+    "deals": [
+      {
+        "id": "d32-1",
+        "name": "Wildlife Photo Guide",
+        "description": "Tips and identification guide for local marine life",
+        "price": 12
+      },
+      {
+        "id": "d32-2",
+        "name": "Waterproof Camera Rental",
+        "description": "Capture dolphins and sea life up close",
+        "price": 20
+      },
+      {
+        "id": "d32-3",
+        "name": "Snorkeling Gear Add-on",
+        "description": "Snorkeling equipment to explore underwater",
+        "price": 18
+      }
+    ]
+  },
+  {
+    "experienceId": 33,
+    "deals": [
+      {
+        "id": "d33-1",
+        "name": "Science Kit To-Go",
+        "description": "Take-home science experiment kit for kids",
+        "price": 18
+      },
+      {
+        "id": "d33-2",
+        "name": "Planetarium Show",
+        "description": "Access to the interactive planetarium",
+        "price": 12
+      },
+      {
+        "id": "d33-3",
+        "name": "Kids Lunch Combo",
+        "description": "Healthy and fun lunch at the science café",
+        "price": 14
+      }
+    ]
+  },
+  {
+    "experienceId": 34,
+    "deals": [
+      {
+        "id": "d34-1",
+        "name": "Extended Flight Time",
+        "description": "Additional 15 minutes of scenic flying",
+        "price": 120
+      },
+      {
+        "id": "d34-2",
+        "name": "Champagne Landing",
+        "description": "Champagne toast upon landing",
+        "price": 50
+      },
+      {
+        "id": "d34-3",
+        "name": "Professional Video",
+        "description": "HD video recording of your helicopter experience",
+        "price": 65
+      }
+    ]
+  },
+  {
+    "experienceId": 35,
+    "deals": [
+      {
+        "id": "d35-1",
+        "name": "Premium Wine Upgrade",
+        "description": "Upgrade to reserve wines during the session",
+        "price": 20
+      },
+      {
+        "id": "d35-2",
+        "name": "Extra Clay & Glaze",
+        "description": "Additional materials to create more pieces",
+        "price": 15
+      },
+      {
+        "id": "d35-3",
+        "name": "Cheese Board Add-on",
+        "description": "Artisan cheese platter to accompany the wine",
+        "price": 18
+      }
+    ]
+  },
+  {
+    "experienceId": 36,
+    "deals": [
+      {
+        "id": "d36-1",
+        "name": "Yoga Mat Rental",
+        "description": "Premium eco-friendly yoga mat for your session",
+        "price": 5
+      },
+      {
+        "id": "d36-2",
+        "name": "Post-Yoga Smoothie",
+        "description": "Fresh healthy smoothie after your practice",
+        "price": 8
+      },
+      {
+        "id": "d36-3",
+        "name": "Meditation Extension",
+        "description": "15-minute guided meditation after yoga",
+        "price": 10
+      }
+    ]
+  },
+  {
+    "experienceId": 37,
+    "deals": [
+      {
+        "id": "d37-1",
+        "name": "Produce Basket",
+        "description": "Curated basket of seasonal market produce",
+        "price": 25
+      },
+      {
+        "id": "d37-2",
+        "name": "Cooking Demo",
+        "description": "Quick cooking demonstration by a local chef",
+        "price": 15
+      }
+    ]
+  },
+  {
+    "experienceId": 38,
+    "deals": [
+      {
+        "id": "d38-1",
+        "name": "Breakfast on the Beach",
+        "description": "Light breakfast after the meditation session",
+        "price": 18
+      },
+      {
+        "id": "d38-2",
+        "name": "Meditation Cushion",
+        "description": "Take home a meditation cushion",
+        "price": 25
+      },
+      {
+        "id": "d38-3",
+        "name": "Guided Audio Download",
+        "description": "Download the meditation session for home practice",
+        "price": 10
+      }
+    ]
+  }
+]
