@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useCartStore } from '../stores/cart'
 import { useNotifications } from '../stores/notifications'
 import { useRouter } from 'vue-router'
@@ -7,6 +7,14 @@ import { useRouter } from 'vue-router'
 const cart = useCartStore()
 const notify = useNotifications()
 const router = useRouter()
+
+// Modal and loading states
+const isLoading = ref(false)
+const showConfirmModal = ref(false)
+const purchaseDetails = ref({
+	itemCount: 0,
+	total: 0
+})
 
 onMounted(() => {
 	cart.load()
@@ -46,13 +54,32 @@ function clearCart() {
 	notify.add('Cart cleared', 'info')
 }
 
-function proceed() {
+async function proceed() {
 	if (!cart.items.length) return
-	// navigate to booking for the first item, pass people as sum qty
-	const first = cart.items[0]
-	if (!first) return
-	const people = cart.items.reduce((s, i) => s + i.qty, 0)
-	router.push({ path: `/Booking/${first.id}`, query: { people: String(people) } })
+	
+	// Store purchase details before clearing
+	purchaseDetails.value = {
+		itemCount: cart.totalItems,
+		total: cart.total
+	}
+	
+	// Show loading
+	isLoading.value = true
+	
+	// Wait 2 seconds
+	await new Promise(resolve => setTimeout(resolve, 2000))
+	
+	// Clear cart
+	cart.clear()
+	
+	// Hide loading and show modal
+	isLoading.value = false
+	showConfirmModal.value = true
+}
+
+function closeModal() {
+	showConfirmModal.value = false
+	router.push('/')
 }
 </script>
 
@@ -60,9 +87,9 @@ function proceed() {
 	<div class="cart-page">
 		<h1>Your Cart</h1>
 
-		<div v-if="items.length === 0" class="empty">Your cart is empty.</div>
+		<div v-if="items.length === 0 && !showConfirmModal" class="empty">Your cart is empty.</div>
 
-		<div v-else class="grid">
+		<div v-else-if="items.length > 0" class="grid">
 			<div class="items">
 				<div v-for="it in items" :key="`${it.id}-${getDealsKey(it)}`" class="cart-item">
 					<img v-if="it.image" :src="it.image" :alt="it.name" />
@@ -107,10 +134,39 @@ function proceed() {
 					<div class="row total"><strong>Total</strong><strong>€{{ total.toFixed(2) }}</strong></div>
 					<div class="actions">
 						<button class="btn" @click="clearCart">Clear cart</button>
-						<button class="btn primary" @click="proceed">Buy now</button>
+						<button class="btn primary" @click="proceed" :disabled="isLoading">Buy now</button>
 					</div>
 				</div>
 			</aside>
+		</div>
+
+		<!-- Loading Overlay -->
+		<div v-if="isLoading" class="loading-overlay">
+			<div class="loading-content">
+				<div class="spinner"></div>
+				<p>Processing your payment...</p>
+			</div>
+		</div>
+
+		<!-- Confirmation Modal -->
+		<div v-if="showConfirmModal" class="modal-overlay" @click.self="closeModal">
+			<div class="modal">
+				<div class="modal-icon">✈️</div>
+				<h2>Thank You for Your Purchase!</h2>
+				<p class="modal-message">Your booking has been confirmed successfully.</p>
+				<div class="modal-details">
+					<div class="detail-row">
+						<span>Items purchased:</span>
+						<strong>{{ purchaseDetails.itemCount }}</strong>
+					</div>
+					<div class="detail-row">
+						<span>Total paid:</span>
+						<strong>€{{ purchaseDetails.total.toFixed(2) }}</strong>
+					</div>
+				</div>
+				<p class="modal-note">A confirmation email has been sent to your inbox.</p>
+				<button class="modal-btn" @click="closeModal">Continue Exploring</button>
+			</div>
 		</div>
 	</div>
 </template>
@@ -280,5 +336,145 @@ h1 {
     text-align: left; 
     margin-top: var(--spacing-sm);
   }
+}
+
+/* Loading Overlay */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.loading-content {
+  text-align: center;
+  color: var(--color-white);
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  margin: 0 auto var(--spacing-md);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-content p {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: var(--spacing-md);
+}
+
+.modal {
+  background: var(--color-bg);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-xl);
+  max-width: 450px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: modalIn 0.3s ease;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-icon {
+  font-size: 4rem;
+  margin-bottom: var(--spacing-md);
+  animation: bounce 0.6s ease;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.modal h2 {
+  color: var(--color-primary);
+  font-size: 1.75rem;
+  margin: 0 0 var(--spacing-sm);
+}
+
+.modal-message {
+  color: var(--color-text-secondary);
+  font-size: 1.05rem;
+  margin: 0 0 var(--spacing-lg);
+}
+
+.modal-details {
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-xs) 0;
+  color: var(--color-text);
+}
+
+.detail-row strong {
+  color: var(--color-primary);
+}
+
+.modal-note {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  margin: 0 0 var(--spacing-lg);
+}
+
+.modal-btn {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  padding: 0.9rem 2rem;
+  border-radius: var(--radius-lg);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+  width: 100%;
+}
+
+.modal-btn:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-2px);
 }
 </style>
