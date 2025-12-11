@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import faresImg from '../assets/fares.jpeg'
+import mladenImg from '../assets/mladen.jpg'
+import erikImg from '../assets/erik.png'
+import filipImg from '../assets/filip.jpeg'
+
 
 const stats = ref([
   { value: '50,000+', label: 'Happy Travelers' },
@@ -32,10 +37,10 @@ const values = ref([
 ])
 
 const team = ref([
-  { name: 'Sofia Lindgren', role: 'Founder & CEO', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop' },
-  { name: 'Marcus Eriksson', role: 'Head of Experiences', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop' },
-  { name: 'Emma Johansson', role: 'Travel Curator', image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop' },
-  { name: 'Oscar Nilsson', role: 'Customer Experience', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop' }
+  { name: 'Fares Elloumi', role: 'Founder & CEO', image: "https://media.licdn.com/dms/image/v2/D4E03AQFWBi06D9qX4Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1699647654099?e=1767225600&v=beta&t=X0wknV2TeQFCq1r-K72rhATp1IWhOzbSbucOooC5CL0" },
+  { name: 'Mladen Kovacic', role: 'Head of Experiences', image: "https://media.licdn.com/dms/image/v2/D4D03AQHirdUBiUCgvQ/profile-displayphoto-shrink_800_800/B4DZU0tVDUHwAc-/0/1740346053476?e=1767225600&v=beta&t=ZtU6zK5E4zdV_0Q03_kgDYoPcYAeR7qiS8vZaCAskok" },
+  { name: 'Erik Andersson', role: 'Travel Curator', image: "https://media.licdn.com/dms/image/v2/D4D03AQFLFK06joRnjg/profile-displayphoto-crop_800_800/B4DZf1yH.kHkAI-/0/1752175247857?e=1767225600&v=beta&t=sdxRmnKk3HPYDOptu4WhoFXo6loBxrrolPAU4Pm0RV0" },
+  { name: 'Filip Hansen', role: 'Customer Experience', image: "https://media.licdn.com/dms/image/v2/D4D35AQFVfRfqUiEELg/profile-framedphoto-shrink_800_800/B4DZsM.dJ4LYAg-/0/1765449257932?e=1766055600&v=beta&t=UgrtFNifOinekCQgelwgrxcjIWjLT9elNP0YFqGc6Ws"}
 ])
 </script>
 
